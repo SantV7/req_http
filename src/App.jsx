@@ -37,7 +37,23 @@ function App() {
   async function handleSubmit(event) {
     event.preventDefault()
 
+    const products = {
+      name,
+      price
+    }
 
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "apllication/json"
+        },
+        body :  JSON.stringify(products)
+      })
+
+    } catch (error) {
+      console.error(`Erro: ${error}`)
+    }
 
   }
 

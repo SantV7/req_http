@@ -1,27 +1,35 @@
 {
-    "products":[
-        {
-            "id": 1,
-            "name": "Camisa",
-            "price": 59.5
-        },
-        {
-            "id": 2,
-            "name": "Calça azul",
-            "price": 78.9
-        },
-        {
-            "id": 3,
-            "name": "Brinco",
-            "price": 13.5
-        },
-        {
-            "id": 4,
-            "name": "Tênis",
-            "price": 325.5
-        }     
-    ]  
-    
+  "products": [
+    {
+      "id": "1",
+      "name": "Camisa",
+      "price": 59.5
+    },
+    {
+      "id": "2",
+      "name": "Calça azul",
+      "price": 78.9
+    },
+    {
+      "id": "3",
+      "name": "Brinco",
+      "price": 13.5
+    },
+    {
+      "id": "4",
+      "name": "Tênis",
+      "price": 325.5
+    },
+    {
+      "name": "RTX 5060 White",
+      "price": "3400",
+      "id": "9w-AlipWPJ4"
+    },
+    {
+      "name": "Ryzen 5 7600X",
+      "price": "1290",
+      "id": "8WRp2ixs8mY"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
-
-
