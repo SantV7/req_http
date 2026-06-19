@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
-
+import '../global.css'
 
 function App() {
   
   const [data, setData] = useState([])
 
+  const [name, setName] = useState('')
+  const [price, setPrice] = useState('')  
+
   const url = "http://localhost:3000/products"
 
 
-  async function requisicao() {
+  async function requisicao() { //Requisição do tipo GET (para buscar dados)
     try {
       const request = await fetch(url)
 
@@ -31,6 +34,15 @@ function App() {
 
   console.log(data)
 
+  async function handleSubmit(event) {
+    event.preventDefault()
+
+
+
+  }
+
+
+
 
   return (
     <>
@@ -38,11 +50,35 @@ function App() {
       <h1>Lista de produtos</h1>
 
       {data.map((itemList) => (
-        <div key={itemList.id}>
-          <p>Produto: {itemList.name} - R${itemList.price}</p>
-        </div>
-
+        <ul key={itemList.id}>
+          <li>Produto: {itemList.name} - R${itemList.price}</li>
+        </ul>
       ))}
+
+       <div className="add-product">
+          <form onSubmit={handleSubmit}>
+
+            <label>
+              <span>Nome:</span>
+              <input
+                type="text"
+                value={name}
+                name="name" 
+                onChange={(event) => setName(event.target.value)}/>
+            </label>
+
+            <label>
+              <span>Price:</span>
+              <input
+                type="text"
+                value={price}
+                name="price" 
+                onChange={(event) => setPrice(event.target.value)}/>
+            </label>
+
+            <button type="submit" value='Criar'> Criar</button>
+          </form>
+        </div> 
     </div>
 
     </>
