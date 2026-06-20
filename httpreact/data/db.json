@@ -22,13 +22,23 @@
     },
     {
       "name": "RTX 5060 White",
-      "price": "3400",
-      "id": "9w-AlipWPJ4"
+      "price": 3400,
+      "id": "pIOha7-W69M"
     },
     {
-      "name": "Ryzen 5 7600X",
-      "price": "1290",
-      "id": "8WRp2ixs8mY"
+      "name": "Mesa Branca",
+      "price": 600,
+      "id": "aOuQArWk-W8"
+    },
+    {
+      "name": "aaa",
+      "price": 344,
+      "id": "_ekZCmjTQf4"
+    },
+    {
+      "name": "aaa",
+      "price": 344,
+      "id": "wO7dqiOqKv8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -1,36 +1,25 @@
 import { useEffect, useState } from "react"
 import '../global.css'
+import useFetch from "./hooks/useFetch"
 
 function App() {
   
   const [data, setData] = useState([])
 
   const [name, setName] = useState('')
+
   const [price, setPrice] = useState('')  
 
   const url = "http://localhost:3000/products"
 
+    const { dataFetch } = useFetch(url)
 
-  async function requisicao() { //Requisição do tipo GET (para buscar dados)
-    try {
-      const request = await fetch(url)
-
-      if(!request.ok) {
-        throw new Error(`Erro na requisição: ${request.status}`)
+    useEffect(() => {
+      if(dataFetch) {
+        setData(dataFetch)
       }
+    }, [dataFetch])
 
-      const response = await request.json()
-      setData(response)
-    }
-
-    catch (error) {
-      console.error(`Erro: ${error}`)
-    }
- }
-  
-  useEffect(() => {
-    requisicao()
-  }, [])
 
   console.log(data)
 
@@ -39,17 +28,23 @@ function App() {
 
     const products = {
       name,
-      price
+      price: parseFloat(price)
     }
 
     try {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "apllication/json"
+          "Content-Type": "application/json"
         },
-        body :  JSON.stringify(products)
+        body: JSON.stringify(products)
       })
+
+      const addedProduct = await response.json()
+      setData((prevData) => [...prevData, addedProduct])
+
+      setName("")
+      setPrice("")
 
     } catch (error) {
       console.error(`Erro: ${error}`)
@@ -60,12 +55,13 @@ function App() {
 
 
 
+
   return (
     <>
     <div className="appMain">
       <h1>Lista de produtos</h1>
 
-      {data.map((itemList) => (
+      {data && data.map((itemList) => (
         <ul key={itemList.id}>
           <li>Produto: {itemList.name} - R${itemList.price}</li>
         </ul>
@@ -73,7 +69,6 @@ function App() {
 
        <div className="add-product">
           <form onSubmit={handleSubmit}>
-
             <label>
               <span>Nome:</span>
               <input
