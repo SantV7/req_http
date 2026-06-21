@@ -39,6 +39,11 @@
       "name": "aaa",
       "price": 344,
       "id": "wO7dqiOqKv8"
+    },
+    {
+      "name": "Testing",
+      "price": 1010101,
+      "id": "2ljiKKHrXVU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

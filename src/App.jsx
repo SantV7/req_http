@@ -6,13 +6,13 @@ function App() {
   
   const [data, setData] = useState([])
 
-  const [name, setName] = useState('')
+  const [name, setName] = useState("")
 
-  const [price, setPrice] = useState('')  
+  const [price, setPrice] = useState("")  
 
   const url = "http://localhost:3000/products"
 
-    const { dataFetch } = useFetch(url)
+  const { dataFetch, httpConfig, isLoading } = useFetch(url)
 
     useEffect(() => {
       if(dataFetch) {
@@ -20,8 +20,7 @@ function App() {
       }
     }, [dataFetch])
 
-
-  console.log(data)
+    console.log(data)
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -31,27 +30,10 @@ function App() {
       price: parseFloat(price)
     }
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(products)
-      })
-
-      const addedProduct = await response.json()
-      setData((prevData) => [...prevData, addedProduct])
-
+    httpConfig(products, "POST")
       setName("")
       setPrice("")
-
-    } catch (error) {
-      console.error(`Erro: ${error}`)
-    }
-
   }
-
 
 
 
@@ -61,6 +43,7 @@ function App() {
     <div className="appMain">
       <h1>Lista de produtos</h1>
 
+      {isLoading && <p>Carregando dados....</p>}
       {data && data.map((itemList) => (
         <ul key={itemList.id}>
           <li>Produto: {itemList.name} - R${itemList.price}</li>
@@ -91,7 +74,6 @@ function App() {
           </form>
         </div> 
     </div>
-
     </>
   )
 }
