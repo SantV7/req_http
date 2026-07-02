@@ -4,15 +4,16 @@ import useFetch from "./hooks/useFetch"
 
 function App() {
   
-  const [data, setData] = useState([])
+  const [ data, setData ] = useState([])
 
-  const [name, setName] = useState("")
+  const [ name, setName ] = useState("")
 
-  const [price, setPrice] = useState("")  
+  const [ price, setPrice ] = useState("")  
+  const [ warning, setWarning ] = useState(false)
 
   const url = "http://localhost:3000/products"
 
-  const { dataFetch, httpConfig, isLoading } = useFetch(url)
+  const { dataFetch, httpConfig,  isLoading } = useFetch(url)
 
     useEffect(() => {
       if(dataFetch) {
@@ -22,20 +23,29 @@ function App() {
 
     console.log(data)
 
-  async function handleSubmit(event) {
-    event.preventDefault()
+    async function handleSubmit(event) {
+      event.preventDefault()
 
-    const products = {
-      name,
-      price: parseFloat(price)
-    }
+      if(name.trim() === "" || price.trim() === "") {
+       return alert("É necessário ter um nome e um preço")
+      }
 
-    httpConfig(products, "POST")
+      const idProducts = data.length > 0 ? String(Number(data[data.length - 1].id) + 1) : 1
+      // o tamanho de data é maior que 0 ? se sim, converta para string o numero em data[tamanho do index] acesse o último elemento da lista pegando o tamanho total menos 1, pegue o id dele, converte para número e adicione 1, se nao coloque 1
+
+      const products = {
+        id: idProducts,
+        name,
+        price: parseFloat(price)
+      }
+
+      httpConfig(products, "POST")
+
+      setData(dataFetch)
+
       setName("")
       setPrice("")
   }
-
-
 
 
   return (
@@ -44,11 +54,15 @@ function App() {
       <h1>Lista de produtos</h1>
 
       {isLoading && <p>Carregando dados....</p>}
-      {data && data.map((itemList) => (
-        <ul key={itemList.id}>
-          <li>Produto: {itemList.name} - R${itemList.price}</li>
-        </ul>
+  {!isLoading && data && (
+    <ul>
+      {data.map((itemList) => (
+        <li key={itemList.id}>
+          Produto: {itemList.name} - R${itemList.price}
+        </li>
       ))}
+    </ul>
+  )}
 
        <div className="add-product">
           <form onSubmit={handleSubmit}>
@@ -70,9 +84,10 @@ function App() {
                 onChange={(event) => setPrice(event.target.value)}/>
             </label>
 
-            <button type="submit" value='Criar'> Criar</button>
+            <button type="submit" value='Criar'>Criar</button>
           </form>
         </div> 
+        
     </div>
     </>
   )
