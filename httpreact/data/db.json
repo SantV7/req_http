@@ -1,9 +1,84 @@
 {
   "products": [
     {
-      "id": "oUW7j2DLdgg",
-      "name": "RTX 5060 TI",
-      "price": 3600
+      "name": "teste",
+      "price": 1500,
+      "id": "UnZrbvK3Cmc"
+    },
+    {
+      "name": "Light bar ",
+      "price": 80,
+      "id": "cUgga7uegck"
+    },
+    {
+      "name": "agagaga",
+      "price": "90,33",
+      "id": "xa07zx3X3mo"
+    },
+    {
+      "name": "adad",
+      "price": "90,9",
+      "id": "1fnespATojE"
+    },
+    {
+      "name": "preço",
+      "price": 90.9,
+      "id": "2DPGNAbNipc"
+    },
+    {
+      "name": "poodadad",
+      "price": "90.90",
+      "id": "vbX2mTjtw1A"
+    },
+    {
+      "name": "Monitor 240hz IPS",
+      "price": "1300.00",
+      "id": "fnNRRmu"
+    },
+    {
+      "name": "Iphone 17",
+      "price": "13000.00",
+      "id": "QH0-lB1"
+    },
+    {
+      "name": "Teste 1",
+      "price": "10.00",
+      "id": "ZnxUWLq"
+    },
+    {
+      "name": "Geladeira",
+      "price": "1200.00",
+      "id": "Seoh_HP"
+    },
+    {
+      "name": "fdff",
+      "price": "8282.00",
+      "id": "KQe0-Cs"
+    },
+    {
+      "name": "adad",
+      "price": "1.00",
+      "id": "aoDVs0j"
+    },
+    {
+      "name": "Fogão",
+      "price": "1300.00",
+      "id": "nisHntS"
+    },
+    {
+      "name": "ada",
+      "price": "55.00",
+      "id": "_HrFKii"
+    },
+    {
+      "name": "tes",
+      "price": "122.00",
+      "id": "TLHByhl"
+    },
+    {
+      "name": "monnenene",
+      "price": "12313.00",
+      "id": "tpjkRWz"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
