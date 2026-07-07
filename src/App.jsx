@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import '../src/global.css'
 import useFetch from "./hooks/useFetch"
+import { X } from 'lucide-react';
 
 function App() {
   
@@ -40,6 +40,10 @@ function App() {
       setPrice("")
   }
 
+  const deleteProduct = (itemId) => {
+    httpConfig(itemId, "DELETE")
+  }
+
   
 
   return (
@@ -68,7 +72,7 @@ function App() {
                 onChange={(event) => setPrice(event.target.value)}/>
             </label>
 
-            {isLoading ? <button type="submit" disabled value='Loading...'>Carregando...</button> : <button type="submit" value='Criar'>Criar</button>}
+            {isLoading ? <button type="submit" disabled value='Loading'>Carregando...</button> : <button type="submit" value='Criar'>Criar</button>}
       
 
           </form>
@@ -81,10 +85,10 @@ function App() {
                 {data.map((itemList) => (
                   <li key={itemList.id}>
                     Produto: {itemList.name} - R${itemList.price}
+                    <button onClick={() => deleteProduct(itemList.id)} className="delete_item"><X size={33}/></button>
                   </li>
                 ))}
               </ul>
-              
             )}
 
             
