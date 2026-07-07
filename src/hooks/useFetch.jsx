@@ -107,18 +107,22 @@ export const useFetch = (url) => {
             throw new Error(`Erro na requisição: ${deleteItem.status}`)
           } 
 
-          const response = await deleteItem.json()
+          const data = await fetch(url)
+          const response = await data.json()
 
-          setDataFetch((prevData) => [...response, response])
+          setDataFetch((prevData) => [...response])
         } catch (err) {
             console.error(`ERROR: ${err}`)
             setErrorRequest(`Houve um erro ao carregar dados!`)
         } finally {
+            setMethod(null)
+            setConfig(null)
+            setItemId(null)
             setIsLoading(false)
         }
       } 
 
-      if(method === "DELETE" && method && config) {
+      if(method === "DELETE" && itemId && config) {
         deleteData()
       }
     }, [url, method, config, itemId])
